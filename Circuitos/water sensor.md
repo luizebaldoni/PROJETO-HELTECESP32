@@ -8,4 +8,4 @@
 * pino 4 conecta no S do sensor
 * 5v conecta no + do sensor
 #### DEMAIS PINOS SAO UTILIZADOS NO RESISTOR E NA LED (pino 12 e o outro GND)
-![foto do circuito](https://drive.google.com/file/d/12H9_XRnWa6wlXqY9Q1HFZqHgZiXvf3Cd/view?usp=sharing)
+![foto do circuito](https://media.discordapp.net/attachments/690312693483307008/929219860427321344/water_sensor_pinos.jpg?width=212&height=468)
