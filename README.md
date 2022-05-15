@@ -18,14 +18,14 @@
     *[Servidor](//Servidor/)
 
 ## SOBRE A PLACA
-    O ESP32 LoRa WiFi v2 da Heltec, tendo como um principal diferencial a comunicação LoRa (Long Range), destaca-se pela eficácia em longas distancia, pelo consumo baixo de energia e a utilização de frequências de rádio para realizar tal comunicação. 
-    * PINOUT 
+O ESP32 LoRa WiFi v2 da Heltec, tendo como um principal diferencial a comunicação LoRa (Long Range), destaca-se pela eficácia em longas distancia, pelo consumo baixo de energia e a utilização de frequências de rádio para realizar tal comunicação. 
+### Pinout
 ![Pinout](https://community.hiveeyes.org/uploads/default/original/2X/e/eda042713108809e3511e822a1aa4e582ee70ebc.png)
-## CONFIGURAÇÃO NO ARDUINO IDE
+### CONFIGURAÇÃO NO ARDUINO IDE
 > Tutorial Completo 
 https://www.fernandok.com/2019/03/instalacao-do-esp32-lora-na-arduino-ide.html
 
-## CONFIGURAÇÃO NO VSCODE
+### CONFIGURAÇÃO NO VSCODE
 > Opção 1: 
 https://www.filipeflop.com/blog/como-programar-esp32-com-vs-code-e-platformio/
 > Opção 2:
