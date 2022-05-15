@@ -1,0 +1,1 @@
+ **use este aquivo .md para colocar ideias e sugestoes de coisas que podemos desenvolver para o projeto**

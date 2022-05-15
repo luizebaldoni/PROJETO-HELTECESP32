@@ -7,6 +7,7 @@
     * Utiliza-se a placa Heltec ESP32 LoRa WiFi V2;
     * Como Software de desenvolvimento utiliza-se o Arduino IDE e o VScode;
     * Linguagens Utilizadas: C++ (para a placa) e possivelmente Python (servidor);
+    * Sera feito um modelo 3d para case da placa;
     
 ## CONFIGURAÇÃO NO ARDUINO IDE
 > Tutorial Completo 
