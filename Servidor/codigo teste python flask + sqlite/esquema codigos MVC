@@ -1,0 +1,31 @@
+model
+
+- usar sqlite3 (criar classe para) ✔
+- funçoes: 
+	- create table ✔
+	- insert rows ✔
+	- select rows
+	- raw execute
+	- remove data base
+	- main:
+		- remove db
+		- with sqlite
+			- create table
+			- insert rows
+
+controller
+
+- bibliotecas:
+	- sqlite3
+	- flask
+	- sys
+- import model
+-funçoes:
+	- get table column names
+	-main:
+		- aplicar flask -> variavel = Flask(__name__)
+		- aplicar decoradores -> estudar sobre
+		- funçoes:
+			- initial page
+			- personalizavel conforme nescessidade
+
