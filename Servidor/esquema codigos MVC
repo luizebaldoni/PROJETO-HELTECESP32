@@ -16,16 +16,16 @@ model ✔
 ## adaptar codigo para informaçoes preenchidas pela db da placa esp32 ( funçao insert rows eu acho) -> estudar a fundo 
 
 
-controller
+controller ✔
 
 - bibliotecas:
 	- sqlite3
 	- flask
 	- sys
-- import model
--funçoes:
-	- get table column names
-	-main:
+- import model ✔
+-funçoes: ✔
+	- get table column names✔
+	-main:✔
 		- aplicar flask -> variavel = Flask(__name__)
 		- aplicar decoradores -> estudar sobre
 		- funçoes:
