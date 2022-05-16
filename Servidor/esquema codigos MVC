@@ -1,17 +1,20 @@
-model
+model ✔
 
 - usar sqlite3 (criar classe para) ✔
 - funçoes: 
 	- create table ✔
 	- insert rows ✔
-	- select rows
-	- raw execute
-	- remove data base
+	- select rows ✔
+	- raw execute ✔
+	- remove data base ✔
 	- main:
-		- remove db
-		- with sqlite
-			- create table
-			- insert rows
+		- remove db ✔
+		- with sqlite ✔
+			- create table ✔
+			- insert rows ✔
+
+## adaptar codigo para informaçoes preenchidas pela db da placa esp32 ( funçao insert rows eu acho) -> estudar a fundo 
+
 
 controller
 

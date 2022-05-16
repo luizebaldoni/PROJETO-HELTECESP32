@@ -47,3 +47,57 @@ def insert_rows(cursor: sqlite3.Cursor, table: str, tuples: list):
             table, ','.join(map(str, some_tuple.keys())), ','.join(tuple_values)
         )
         cursor.execute(command)
+
+def select_rows(cursor: sqlite3.Cursor, clause: str) -> list:
+    #faz seleção das tuplas de uma tabela - qualquer comando sqlite
+    #cursor = para o banco de dados
+    #clause = faz a seleçao (SELECT * FROM table)
+
+    res = cursor.execute(clause)
+    rows = []
+    for row in res:
+        rows += [tuple([row[k] for k in row.keys()])]
+
+    return rows
+
+def raw_execute(cursor: sqlite3.Cursor, clause: str) -> sqlite3.Cursor:
+    #executa o comando sqlite e retorna o resultado
+    #cursor = para o banco de dados
+    #clause = clausula sqlite
+    #return = retorno da execuçao da clausula
+
+    return cursor.execute(clause)
+
+def remove_db(file: str) -> None:
+    #deleta o arquivo .db 
+    #file caminho para o banco de dados
+
+    try:
+        os.remove(file)
+    except FileNotFoundError:
+        pass
+
+def main(path: str = '.', db_name: str = 'test.db') -> None:
+    remove_db(os.path.join(path, db_name))
+
+    with SQLite(os.path.join(path, db_name)) as cursor:
+        create_table(
+            cursor,
+            """"
+            'nome da tabela',
+            {nome da coluna: dado}
+            """"
+        )
+
+        insert_rows(
+            cursor, 
+            """
+            'nome da tabela'
+            [
+                {chave: ., nome da coluna: item}
+            ]
+            """
+        )
+
+if __name__ == '__main__':
+    main()
