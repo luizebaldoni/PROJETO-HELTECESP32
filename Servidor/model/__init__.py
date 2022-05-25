@@ -15,72 +15,72 @@ class SQLite(object):
         self.conn.close()
 
 
-def create_table(cursor: sqlite3.Cursor, table: str, fields: dict, other_data: list = None):
+def create_table(cursor: sqlite3.Cursor, tabela: str, dicionario: dict, chaveEst: list = None):
     # criar tabelas
     # cursor = para o banco de dados
-    # table = nome da tabela
-    # fields = dict onde a chave é o nome da coluna e o valor e tipo
-    # other_data = define foreign keys ou outras config
+    # tabela = nome da tabela
+    # dicionario = dict onde a chave é o nome da coluna e o valor e tipo
+    # chaveEst = define foreign keys ou outras config
 
-    command = "CREATE TABLE %s (%s)" % (
-        table,
-        ','.join([k + ' ' + v for k, v in fields.items()] + (
-            other_data if other_data is not None else []))
+    comando = "CREATE TABLE %s (%s)" % (
+        tabela,
+        ','.join([k + ' ' + v for k, v in dicionario.items()] + (
+            chaveEst if chaveEst is not None else []))
     )
-    cursor.execute(command)
+    cursor.execute(comando)
 
-def insert_rows(cursor: sqlite3.Cursor, table: str, tuples: list):
+def insert_rows(cursor: sqlite3.Cursor, tabela: str, tuplas: list):
     #insere tuplas na tabela 
     #cursor = para o banco de dados
-    #table = nome da tabela
+    #tabela = nome da tabela
     #tuples = lista de dicionarios
 
-    for some_tuple in tuples:
-        tuple_values = []
-        for v in some_tuple.values():
+    for tupla in tuplas:
+        vtuplas = []
+        for v in tupla.values():
             if isinstance(v, str):
-                tuple_values += ['\'' + v + '\'']
+                tupla += ['\'' + v + '\'']
             else:
-                tuple_values += [str(v)]
+                tupla += [str(v)]
 
         command = "INSERT INTO %s(%s) VALUES (%s)" % (
-            table, ','.join(map(str, some_tuple.keys())), ','.join(tuple_values)
+            tabela, ','.join(map(str, tupla.keys())), ','.join(vtuplas)
         )
         cursor.execute(command)
 
-def select_rows(cursor: sqlite3.Cursor, clause: str) -> list:
+def select_rows(cursor: sqlite3.Cursor, selecao: str) -> list:
     #faz seleção das tuplas de uma tabela - qualquer comando sqlite
     #cursor = para o banco de dados
-    #clause = faz a seleçao (SELECT * FROM table)
+    #selecao = faz a seleçao (SELECT * FROM table)
 
-    res = cursor.execute(clause)
+    res = cursor.execute(selecao)
     rows = []
     for row in res:
         rows += [tuple([row[k] for k in row.keys()])]
 
     return rows
 
-def raw_execute(cursor: sqlite3.Cursor, clause: str) -> sqlite3.Cursor:
+def raw_execute(cursor: sqlite3.Cursor, clausula: str) -> sqlite3.Cursor:
     #executa o comando sqlite e retorna o resultado
     #cursor = para o banco de dados
-    #clause = clausula sqlite
+    #clausula = clausula sqlite
     #return = retorno da execuçao da clausula
 
-    return cursor.execute(clause)
+    return cursor.execute(clausula)
 
-def remove_db(file: str) -> None:
+def remove_db(doc: str) -> None:
     #deleta o arquivo .db 
     #file caminho para o banco de dados
 
     try:
-        os.remove(file)
+        os.remove(doc)
     except FileNotFoundError:
         pass
 
-def main(path: str = '.', db_name: str = 'test.db') -> None:
-    remove_db(os.path.join(path, db_name))
+def main(path: str = '.', dbnome: str = 'test.db') -> None:
+    remove_db(os.path.join(path, dbnome))
 
-    with SQLite(os.path.join(path, db_name)) as cursor:
+    with SQLite(os.path.join(path, dbnome)) as cursor:
         create_table(
             cursor,
             """"
