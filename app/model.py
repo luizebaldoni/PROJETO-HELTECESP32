@@ -17,12 +17,12 @@ class SQLite( object ):
 
 def create_table(cursor: sqlite3.Cursor, table: str, fields: dict, other_data: list = None) -> None:
 
-    command = "CREATE TABLE %s (%s)" % (
+    comando = "CREATE TABLE %s (%s)" % (
         table,
         ','.join( [k + ' ' + v for k, v in fields.items()] + (
             other_data if other_data is not None else []) )
     )
-    cursor.execute( command )
+    cursor.execute( comando )
 
 def insert_rows(cursor: sqlite3.Cursor, table: str, tuples: list) -> None:
 
@@ -34,9 +34,9 @@ def insert_rows(cursor: sqlite3.Cursor, table: str, tuples: list) -> None:
             else:
                 tuple_values += [str( v )]
 
-        command = "INSERT INTO %s(%s) VALUES (%s)" % (
+        comando = "INSERT INTO %s(%s) VALUES (%s)" % (
             table, ','.join( map( str, some_tuple.keys() ) ), ','.join( tuple_values )
-            
+
 def create_table(cursor: sqlite3.Cursor, tabela: str, dicionario: dict, chaveEst: list = None):
     # criar tabelas
     # cursor = para o banco de dados
@@ -65,10 +65,10 @@ def insert_rows(cursor: sqlite3.Cursor, tabela: str, tuplas: list):
             else:
                 tupla += [str(v)]
 
-        command = "INSERT INTO %s(%s) VALUES (%s)" % (
+        comando = "INSERT INTO %s(%s) VALUES (%s)" % (
             tabela, ','.join(map(str, tupla.keys())), ','.join(vtuplas)
         )
-        cursor.execute(command)
+        cursor.execute(comando)
 
 def select_rows(cursor: sqlite3.Cursor, selecao: str) -> list:
     #faz seleção das tuplas de uma tabela - qualquer comando sqlite
