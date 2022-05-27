@@ -73,11 +73,11 @@ def main():
 
     @app.route('/selcte_and_populate_table', methods = ['POST'])
     def preenchertabela():  
-        with model, SQLite(os.path, join(db_path, dbnome)) as cursor:
+        with model.SQLite(os.path.join(db_path, dbnome)) as cursor:
             chamada = request.form['second_task_table_selector']
             colunas = nomecoluna(cursor, chamada)
             select = 'SELECT * FROM ' + chamada
-
+            tabela= model.select_rows(cursor)
             ltuplas = model.select_rows(cursor, select)
 
             #lista vazia que vai conter os dicts
