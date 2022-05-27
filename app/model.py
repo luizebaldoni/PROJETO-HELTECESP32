@@ -14,7 +14,6 @@ class SQLite( object ):
         self.conn.commit()
         self.conn.close()
 
-
 def create_table(cursor: sqlite3.Cursor, table: str, fields: dict, other_data: list = None) -> None:
 
     comando = "CREATE TABLE %s (%s)" % (

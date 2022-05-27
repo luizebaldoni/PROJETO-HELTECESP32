@@ -1,0 +1,51 @@
+model ✔
+
+- usar sqlite3 (criar classe para) ✔
+- funçoes: 
+	- create table ✔
+	- insert rows ✔
+	- select rows ✔
+	- raw execute ✔
+	- remove data base ✔
+	- main:
+		- remove db ✔
+		- with sqlite ✔
+			- create table ✔
+			- insert rows ✔
+
+## adaptar codigo para informaçoes preenchidas pela db da placa esp32 ( funçao insert rows eu acho) -> estudar a fundo 
+
+
+controller ✔
+
+- bibliotecas:
+	- sqlite3
+	- flask
+	- sys
+- import model ✔
+-funçoes: ✔
+	- get table column names✔
+	-main:✔
+		- aplicar flask -> variavel = Flask(__name__)
+		- aplicar decoradores -> estudar sobre
+		- funçoes:
+			- initial page
+			- personalizavel conforme nescessidade
+- colocar no model informação da placa, importar para o model
+
+
+# por no codigo da placa para enviar a informaçao pro servidor
+
+https://www.arduinolibraries.info/architectures/esp32
+#bibliotecas esp32 (firebase esp32 client) - Google Firebase Realtime Database Arduino Client Library for Espressif ESP32
+
+
+
+
+# por no codigo da placa para enviar a informaçao pro servidor
+
+https://www.arduinolibraries.info/architectures/esp32
+#bibliotecas esp32 (firebase esp32 client) - Google Firebase Realtime Database Arduino Client Library for Espressif ESP32
+
+
+
