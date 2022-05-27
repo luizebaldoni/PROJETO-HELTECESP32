@@ -14,6 +14,7 @@ class SQLite( object ):
         self.conn.commit()
         self.conn.close()
 
+
 def create_table(cursor: sqlite3.Cursor, table: str, fields: dict, other_data: list = None) -> None:
 
     command = "CREATE TABLE %s (%s)" % (
@@ -35,39 +36,6 @@ def insert_rows(cursor: sqlite3.Cursor, table: str, tuples: list) -> None:
 
         command = "INSERT INTO %s(%s) VALUES (%s)" % (
             table, ','.join( map( str, some_tuple.keys() ) ), ','.join( tuple_values )
-        )
-        cursor.execute( command )
-
-
-def select_rows(cursor: sqlite3.Cursor, clause: str) -> list:
-
-    res = cursor.execute( clause )
-    rows = []
-    for row in res:  # type: sqlite3.Row
-        rows += [tuple( [row[k] for k in row.keys()] )]
-
-    return rows
-
-
-def raw_execute(cursor: sqlite3.Cursor, clause: str) -> sqlite3.Cursor:
-
-    return cursor.execute( clause )
-
-
-def remove_db(file: str) -> None:
-
-    try:
-        os.remove( file )
-    except FileNotFoundError:
-        pass
-
-
-def main(path: str = '.', db_name: str = 'test.db') -> None:
-    remove_db( os.path.join( path, db_name ) )
-
-    with SQLite( os.path.join( path, db_name ) ) as cursor:
-        # todas as tabelas possuem mais de 4 colunas
-        # foram feitas mais de 4 tabelas
         create_table(
             cursor,
             'SINAIS',  # tabela com 10 tuplas (no caso acho que tem mais)

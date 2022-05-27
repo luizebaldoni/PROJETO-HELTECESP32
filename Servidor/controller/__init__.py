@@ -31,6 +31,7 @@ def main():
         tabela = model.select_rows(cursor, busca)
         dicionarios = [] #convertendo em dicionarios
 
+
         for linha in tabela:
             dicionarios.append({'id_sinais': linha[0], 'data_sinais': linha [1], 'sinal_sensor': [2]
                 })

@@ -33,3 +33,11 @@ controller ✔
 			- personalizavel conforme nescessidade
 - colocar no model informação da placa, importar para o model
 
+
+# por no codigo da placa para enviar a informaçao pro servidor
+
+https://www.arduinolibraries.info/architectures/esp32
+#bibliotecas esp32 (firebase esp32 client) - Google Firebase Realtime Database Arduino Client Library for Espressif ESP32
+
+
+
