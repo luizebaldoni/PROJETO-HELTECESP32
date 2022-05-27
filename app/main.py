@@ -71,35 +71,36 @@ def main():
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
 
-@app.route('/selcte_and_populate_table', methods = ['POST'])
-def preenchertabela():
-    with model, SQLite(os.path,join(db_path, dbnome)) as cursor:
-        chamada = request.form['second_task_table_selector']
-        colunas = nomecoluna(cursor, chamada)
-        select = 'SELECT * FROM ' + chamada
+    @app.route('/selcte_and_populate_table', methods = ['POST'])
+    def preenchertabela():  
+        with model, SQLite(os.path, join(db_path, dbnome)) as cursor:
+            chamada = request.form['second_task_table_selector']
+            colunas = nomecoluna(cursor, chamada)
+            select = 'SELECT * FROM ' + chamada
 
-        ltuplas = model.select_rows(cursor, select)
+            ltuplas = model.select_rows(cursor, select)
 
-        #lista vazia que vai conter os dicts
-        ldict = []
+            #lista vazia que vai conter os dicts
+            ldict = []
 
-        #une listas e cria diconarios
-        for i in range(len(ltuplas)):
-            dicionario = {}
-            for j in range(len(colunas)):
-                dicionario[colunas[j]] = ltuplas[i][j]
+            #une listas e cria diconarios
+            for i in range(len(ltuplas)):
+                dicionario = {}
+                for j in range(len(colunas)):
+                    dicionario[colunas[j]] = ltuplas[i][j]
 
-            #adiciona os dicionarios na lista
-            ldict.append(dicionario)
+                #adiciona os dicionarios na lista
+                ldict.append(dicionario)
         
-        response = jsonify(ldict)
+            response = jsonify(ldict)
 
-        for linha in tabela:
-            dicionarios.append({'id_sinais': linha[0], 'data_sinais': linha [1], 'sinal_sensor': [2]
-                })
-        response = jsonify(dicionarios) #mandando retornar os dicionarios
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        return response
-    app.run()
+            for linha in tabela:
+                dicionarios.append({'id_sinais': linha[0], 'data_sinais': linha [1], 'sinal_sensor': [2]
+                    })
+            response = jsonify(dicionarios) #mandando retornar os dicionarios
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
+        app.run()
+    
 if __name__ == '__main__':
     main()
