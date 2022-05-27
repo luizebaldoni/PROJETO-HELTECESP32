@@ -2,7 +2,6 @@ import os
 import sqlite3
 from flask import Flask, request, jsonify, render_template
 import sys
-import serial
 
 filepath = os.path.dirname(__file__)
 sys.path.append(os.path.join(filepath, '..'))
