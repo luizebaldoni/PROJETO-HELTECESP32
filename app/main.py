@@ -95,9 +95,9 @@ def main():
             response = jsonify(ldict)
 
             for linha in tabela:
-                dicionarios.append({'id_sinais': linha[0], 'data_sinais': linha [1], 'sinal_sensor': [2]
+                dicionario.append({'id_sinais': linha[0], 'data_sinais': linha [1], 'sinal_sensor': [2]
                     })
-            response = jsonify(dicionarios) #mandando retornar os dicionarios
+            response = jsonify(dicionario) #mandando retornar os dicionarios
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
         app.run()

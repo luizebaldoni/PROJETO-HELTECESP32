@@ -103,8 +103,8 @@ def main(path: str = '.', dbnome: str = 'test.db') -> None:
     remove_db(os.path.join(path, dbnome))
 
     with SQLite(os.path.join(path, dbnome)) as cursor:
-        create_table(
-            cursor,
+        create_table( 
+            cursor, 
             'SINAIS',  # tabela com 10 tuplas (no caso acho que tem mais)
             {
                 'id_sinais': ' INTEGER AUTOINCREMENT',
