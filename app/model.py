@@ -34,6 +34,7 @@ def insert_rows(cursor: sqlite3.Cursor, table: str, tuples: list) -> None:
             else:
                 tuple_values += [str( v )]
 
+        comando = "INSERT INTO %s(%s) VALUES (%s)" % ()
 
         comando = "INSERT INTO %s(%s) VALUES (%s)" %(
             table, ','.join( map( str, some_tuple.keys() ) ), ','.join( tuple_values ))
@@ -108,9 +109,9 @@ def main(path: str = '.', dbnome: str = 'test.db') -> None:
             cursor, 
             'SINAIS',  # tabela com 10 tuplas (no caso acho que tem mais)
             {
-                'id_sinais': ' INTEGER AUTOINCREMENT',
-                'data_sinais': 'datetime NOT NULL DEFAULT CURRENT TIMESTAMP',
-                'sinal_sensor':'float NOT NULL'})
+                'id_sinais': 'INTEGER PRIMARY KEY AUTOINCREMENT',
+                'data_sinais': 'DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP',
+                'sinal_sensor':'FLOAT NOT NULL'})
       
 if __name__ == '__main__':
     main()
