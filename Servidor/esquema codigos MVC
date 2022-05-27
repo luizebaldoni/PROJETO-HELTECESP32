@@ -31,4 +31,5 @@ controller ✔
 		- funçoes:
 			- initial page
 			- personalizavel conforme nescessidade
+- colocar no model informação da placa, importar para o model
 
