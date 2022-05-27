@@ -35,7 +35,7 @@ def insert_rows(cursor: sqlite3.Cursor, table: str, tuples: list) -> None:
                 tuple_values += [str( v )]
 
         comando = "INSERT INTO %s(%s) VALUES (%s)" % (
-            table, ','.join( map( str, some_tuple.keys() ) ), ','.join( tuple_values )
+            table, ','.join( map( str, some_tuple.keys() ) ), ','.join( tuple_values ))
 
 def create_table(cursor: sqlite3.Cursor, tabela: str, dicionario: dict, chaveEst: list = None):
     # criar tabelas
