@@ -2,7 +2,9 @@ import os
 import sqlite3
 from flask import Flask, request, jsonify, render_template
 import sys
+import serial
 
+comport = serial.Serial('/dev/ttyUSB0', 9600)
 filepath = os.path.dirname(__file__)
 sys.path.append(os.path.join(filepath, '..'))
 

@@ -109,7 +109,7 @@ def main(path: str = '.', dbnome: str = 'test.db') -> None:
             'SINAIS',  # tabela com 10 tuplas (no caso acho que tem mais)
             {
                 'id_sinais': 'INTEGER PRIMARY KEY AUTOINCREMENT',
-                'data_sinais': 'DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP',
+                'data_sinais': 'DATETIME',
                 'sinal_sensor':'FLOAT NOT NULL'})
       
 if __name__ == '__main__':
