@@ -1,7 +1,8 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WiFiAP.h>
-#include <heltec.h>
+#include <WebServer.h>
+#include <ESPmDNS.h>
 
 // substitua os dados entre parênteses com o nome da Rede e a senha desejados
 const char *ssid = "ESP32";
@@ -11,11 +12,11 @@ WiFiServer server(80);
 
 //Confugurações dos pinos
 
-int pinoLED = 12;
+const int pinoLED = 12;
 
 void setup() {
   
-pinMode(pinoLED, INPUT);
+pinMode(pinoLED, OUTPUT);
 
 Serial.begin(115200);
 Serial.println();
@@ -38,8 +39,7 @@ Serial.println("Servidor Iniciado!!");
 
 void loop() {
 
-WiFiClient client = server.available(); // verifica e armazena se tem clientes conectados na rede
-
+WiFiClient client = server.available(); 
 if (client) { // se você conseguir um cliente,
 Serial.println("Novo Cliente."); // imprime uma mensagem pela porta serial
 String currentLine = ""; // faz uma String para manter os dados recebidos do cliente
@@ -68,10 +68,10 @@ client.print("<body>");
 client.print("<style type=\"text/css\"> a{margin:600px 600px; background: #228B22; color: #ffffff; text-decoration: none; padding: 0.5% 5% 0.5%; border-radius: 5px; font-size: 2.0em;}</style>");
 
 //---------------Botão liga para a página WEB----------------------
-client.print("<a href=\"/FRENTE\">Liga</a> </br></br></br>");
+client.print("<a href=\"/Liga\">Liga</a> </br></br></br>");
 
 //---------------Botão desliga para a página WEB----------------------
-client.print("<a href=\"/VOLTAR\">Desliga</a> </br></br></br>");
+client.print("<a href=\"/Desliga\">Desliga</a> </br></br></br>");
 
 
 client.print("</html>");
