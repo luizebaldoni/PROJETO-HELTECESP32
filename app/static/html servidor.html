@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../styles/main.css">
+	<link rel="icon" href="../images/dj.png" />
+	<title>teste dbs</title>
+</head>
+<body>
+<div class="centro">
+	<h1>View</h1>
+	<p>Essa é a página de acesso ao site. Aqui você pode modificar o banco de dados!</p>
+
+	<div class="center_inside">
+		<h2>Selecionando a tabela</h2>
+		<p>
+			com o drop-down, é possível selecionar a tabela desejada e consulta-la.
+		</p>
+		<form id="select_and_populate_table" name="select_and_populate_table" action="http://localhost:5000/select_and_populate_table" method="POST">
+			<label for="second_task_table_selector">Tabela:</label><br>
+				<select name="tabelaselecionada" id="tabelaselecionada">
+					<option value="estudio">Estúdio</option>  <!-- TODO trocar pelo nome da tabela! -->
+					<option value="genero">Gênero</option>  <!-- TODO trocar pelo nome da tabela! -->
+					<option value="filme">Filme</option>  <!-- TODO trocar pelo nome da tabela! -->
+					<option value="continuacao">Continuação</option>  <!-- TODO trocar pelo nome da tabela! -->
+				</select>
+			<input type="submit">
+		</form>
+		<table id="tabelaresposta">
+		</table>
+		<p id="tabela">Resposta</p>
+	</div>
+</div>
+</body>
+<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">
+</script>
+<script type="text/javascript" src="../scripts/main.js" id="db_query_tables_script"></script>
+</html>
