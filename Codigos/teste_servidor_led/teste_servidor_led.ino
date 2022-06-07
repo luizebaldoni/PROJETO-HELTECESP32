@@ -3,73 +3,61 @@
 #include <WiFiAP.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
+#include "heltec.h"
 
-// substitua os dados entre parênteses com o nome da Rede e a senha desejados
 const char *ssid = "ESP32";
-const char *password = "carrinho";
-
+const char *password = "Teste03";
+//DEFINICOES    
+int pino = 12; 
 WiFiServer server(80);
-
-//Confugurações dos pinos
-
-const int pinoLED = 12;
-
+//CODIGO PRINCIPAL
 void setup() {
-  
-pinMode(pinoLED, OUTPUT);
-
-Serial.begin(115200);
-Serial.println();
-Serial.println("configurando...");
-
-
-// Você pode remover o parâmetro de senha se quiser que
-// a rede gerada seja aberta.
-WiFi.softAP(ssid, password);
-IPAddress myIP = WiFi.softAPIP();
-Serial.print("O Endereço IP Da Rede : ");
-Serial.println(myIP);
-//inicia o webserver
-server.begin();
-
-Serial.println("Servidor Iniciado!!");
+  Serial.begin(115200); 
+  Serial.println();
+  Serial.println("configurando...");    
+  delay(6000); 
+  pinMode(12, INPUT_PULLUP); //DEFINE O PINO COMO SAÍDA    
+  WiFi.softAP(ssid, password); // DEFINE que para ter acesso precisa senha
+  IPAddress myIP = WiFi.softAPIP();
+  Serial.print("O Endereço IP Da Rede : ");
+  Serial.println(myIP);
+  server.begin(); //inicia o webserver
+  Serial.println("Servidor Iniciado!!");
 
 
 }
-
+//CONDICOES
 void loop() {
-
-WiFiClient client = server.available(); 
-if (client) { 
-Serial.println("Novo Cliente."); 
-String currentLine = ""; 
-while (client.connected()) { 
-if (client.available()) { 
-char c = client.read(); 
-Serial.write(c); 
-if (c == '\n') { 
-
-if (currentLine.length() == 0) {
-client.println("HTTP/1.1 200 OK");
-client.println  ("Content-type:text/html");
-client.println();
- client:send("<head><meta http-equiv='refresh' content='1'></head>") 
-        client:send("<h1>Recebendo dados da porta analógica</h1>")
-        client:send("<p>Valor da porta analógica:</p>")
-        client:send(adc.read(0)) //Envia o valor do sensor
-        client:send("<p>A página é atualizada sozinha</p>")
-
-client.println();
-break;
-} else { 
-currentLine = "";
+  WiFiClient client = server.available(); 
+  if (client) { 
+  Serial.println("Novo Cliente.");
+  String currentLine = ""; 
+  while (client.connected()) { 
+  if (client.available()) { 
+  char c = client.read(); 
+  Serial.write(c); 
+  if (c == '\n') { 
+  if (currentLine.length() == 0) {
+    client.println("HTTP/1.1 200 OK");
+    client.println("Content-type:text/html");
+    client.println();
+    client.println("<html>");
+    client.print("<head><title> Servidor ESP32 </title></head>");
+    client.print("<body>");
+    client.print("<style type=\"text/css\">h1{color: black;font-family: 'Times New Roman', Times, serif; }.ligado{background-color: green;color: aliceblue;}</style>");
+    client.println("<h1>Recebendo dados da porta analogica</h1>");
+    client.println("<p class="">Valor da porta analógica:</p>");
+    if (digitalWrite(12, HIGH)){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
+      client.println("<p class=\"ligado\">A LED esta ligada</p>");
+      }else{ 
+        client.println("<p class=\"desligado\">A LED esta desligada!</p>");
+      }
+    client.println("</html>");
+    client.println("</body>");
+    client.stop();
 }
-} else if (c != '\r') { 
-currentLine += c; 
-}
-}
-
-client.stop();
-
-
+  }
+  }
+  }
+  }
 }

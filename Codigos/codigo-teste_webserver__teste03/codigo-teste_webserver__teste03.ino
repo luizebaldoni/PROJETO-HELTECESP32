@@ -42,13 +42,15 @@ void loop() {
     client.println("Content-type:text/html");
     client.println();
     client.println("<html>");
-    client.println("<head><meta http-equiv='refresh' content='1'><tittle>Servidor ESP32</tittle></head>");
+    client.print("<head><title> Servidor ESP32 </title></head>");
+    client.print("<body>");
+    client.print("<style type=\"text/css\">h1{color: black;font-family: 'Times New Roman', Times, serif; }.ligado{background-color: green;color: aliceblue;}</style>");
     client.println("<h1>Recebendo dados da porta analogica</h1>");
-    client.println("<p>Valor da porta analógica:</p>");
+    client.println("<p class="">Valor da porta analógica:</p>");
     if (digitalWrite(12, HIGH)){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
-      client.println("<p>A LED esta ligada</p>");
+      client.println("<p class=\"ligado\">A LED esta ligada</p>");
       }else{ 
-        client.println("<p>A LED esta desligada!</p>");
+        client.println("<p class=\"desligado\">A LED esta desligada!</p>");
       }
     client.println("</html>");
     client.println("</body>");
