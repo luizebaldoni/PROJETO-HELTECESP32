@@ -56,7 +56,7 @@ client.println();
  client:send("<head><meta http-equiv='refresh' content='1'></head>") 
         client:send("<h1>Recebendo dados da porta analógica</h1>")
         client:send("<p>Valor da porta analógica:</p>")
-        client:send(adc.read(0)) --Envia o valor do sensor
+        client:send(adc.read(0)) //Envia o valor do sensor
         client:send("<p>A página é atualizada sozinha</p>")
 
 client.println();
