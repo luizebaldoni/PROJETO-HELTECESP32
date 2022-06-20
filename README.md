@@ -9,12 +9,11 @@
     * Linguagens Utilizadas: C++ (para a placa) e possivelmente Python (servidor);
     * Sera feito um modelo 3d para case da placa
 ## INDICE
-* [Instruções gerais](//README.md)
-* [Anotações](/Anota%C3%A7%C3%B5es/)
-* [Circuitos](//Circuitos/)
-* [Codigos](//Codigos/)
-* [Modelagem 3d](//modelagem%203d/)
-* [Servidor](//Servidor/)
+* [Instruções gerais](README.md)
+* [Anotações](Anotações/README.md)
+* [Circuitos](Circuitos)
+* [Codigos](Codigos)
+* [Modelagem 3d](modelagem_3d)
 
 ## SOBRE A PLACA
 O ESP32 LoRa WiFi v2 da Heltec, tendo como um principal diferencial a comunicação LoRa (Long Range), destaca-se pela eficácia em longas distancia, pelo consumo baixo de energia e a utilização de frequências de rádio para realizar tal comunicação. 
