@@ -16,7 +16,7 @@ void setup() {
   Serial.println();
   Serial.println("configurando...");    
   delay(6000); 
-  pinMode(12, INPUT_PULLUP); //DEFINE O PINO COMO SAÍDA    
+  pinMode(12, OUTPUT); //DEFINE O PINO COMO SAÍDA    
   WiFi.softAP(ssid, password); // DEFINE que para ter acesso precisa senha
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("O Endereço IP Da Rede : ");
@@ -47,7 +47,7 @@ void loop() {
     client.print("<style type=\"text/css\">h1{color: black;font-family: 'Times New Roman', Times, serif; }.ligado{background-color: green;color: aliceblue;}</style>");
     client.println("<h1>Recebendo dados da porta analogica</h1>");
     client.println("<p class="">Valor da porta analógica:</p>");
-    if (digitalWrite(12, HIGH)){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
+    if (digitalRead((pino)== HIGH)){ 
       client.println("<p class=\"ligado\">A LED esta ligada</p>");
       }else{ 
         client.println("<p class=\"desligado\">A LED esta desligada!</p>");
