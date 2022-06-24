@@ -12,7 +12,9 @@
 * [Instruções gerais](README.md)
 * [Anotações](Anotações/README.md)
 * [Circuitos](Circuitos)
-* [Codigos](Codigos)
+* [Codigos de Comunicação](Comunicação)
+* [Codigos Web server](Webserver)
+* [Codigos de sensores](codigos_sensores)
 * [Modelagem 3d](modelagem_3d)
 
 ## SOBRE A PLACA
