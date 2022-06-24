@@ -19,16 +19,7 @@ void setup() {
 void loop() {
   if(analogRead(pinosensor) > 690){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
       digitalWrite(pinoLED, HIGH); //ACENDE O LED
+      delay(5000);
   }else{ //SENÃO, EXECUTA:
     digitalWrite(pinoLED, LOW); //DESLIGA O LED
-  }
-  // Verificando erros
-  if (isnan(pinosensor) || isnan(pinoLED)) {    
-    return;
-  }
-  //Linha que envia os sinais do sensor via Serial para gravar no BD
-  sinais = String(pinosensor) + "|" + String(pinoLED);
-  Serial.println(sinais);
-  delay(30000); //Aguarda 30 segundos
-
-}
+  }}  
