@@ -22,4 +22,5 @@ void loop() {
       delay(5000);
   }else{ //SENÃO, EXECUTA:
     digitalWrite(pinoLED, LOW); //DESLIGA O LED
+    delay(5000);
   }}  
