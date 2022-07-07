@@ -1,7 +1,3 @@
-#include <WiFi.h>
-#include <WiFiClient.h>
-#include <WiFiAP.h>
-#include <WebServer.h>
 #include <heltec.h>
 
 const int pinoLed = 13; //PINO DIGITAL UTILIZADO PELO LED
