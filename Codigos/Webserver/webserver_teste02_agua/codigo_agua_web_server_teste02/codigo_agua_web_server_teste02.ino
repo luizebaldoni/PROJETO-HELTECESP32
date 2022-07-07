@@ -9,6 +9,11 @@ const char *password = "Teste03";
 //DEFINICOES
 int pinosensor = 4;      
 int pinoLED = 12;
+boolean sensor(){
+    if(analogRead(pinosensor) > 690){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
+    digitalWrite(pinoLED, HIGH); //ACENDE O LED
+}
+}
 WiFiServer server(80);
 //CODIGO PRINCIPAL
 void setup() {
@@ -24,11 +29,8 @@ void setup() {
   Serial.println(myIP);
   server.begin(); //inicia o webserver
   Serial.println("Servidor Iniciado!!");
-}
-boolean sensor(){
-  if (analogRead(pinosensor) > 690){
-    digitalWrite(pinoLED, HIGH);
-  }
+
+
 }
 //CONDICOES
 void loop(){
@@ -37,27 +39,28 @@ void loop(){
   Serial.println("Novo Cliente.");
   String currentLine = ""; 
   while (client.connected()) { 
-    if (client.available()) { 
-          char c = client.read(); 
-        Serial.write(c); 
-        if (c == '\n') { 
-          if (currentLine.length() == 0) {
-              client.println("HTTP/1.1 200 OK");
-              client.println("Content-type:text/html");
-              client.println();
-              client.println("<html>");
-              client.println("<head><meta http-equiv='refresh' content='1'><tittle>Servidor ESP32</tittle></head>");
-              client.println("<h1>Recebendo dados da porta analogica</h1>");
-                if(sensor() == true){
-                  client.println("<p>Leitura do sensor eh maior que 690 bits</p>");
-                }else
-                  client.println("<p>Leitura menor que 690 bits ou sensor desligado</p>");
-                }
-              client.println("</html>");
-              client.println("</body>");
-              client.stop();
-        }
-        }
-      }
+  if (client.available()) { 
+  char c = client.read(); 
+  Serial.write(c); 
+  if (c == '\n') { 
+  if (currentLine.length() == 0) {
+    client.println("HTTP/1.1 200 OK");
+    client.println("Content-type:text/html");
+    client.println();
+    client.println("<html>");
+    client.println("<head><meta http-equiv='refresh' content='1'><tittle>Servidor ESP32</tittle></head>");
+    client.println("<h1>Recebendo dados da porta analogica</h1>");
+    if(sensor() == true){
+    client.println("<p>Leitura do sensor eh maior que 690 bits</p>");
+    }else{
+    client.println("<p>Leitura menor que 690 bits ou sensor desligado</p>");
     }
+    client.println("</html>");
+    client.println("</body>");
+    client.stop();
+}
   }
+  }
+  }
+  }
+}

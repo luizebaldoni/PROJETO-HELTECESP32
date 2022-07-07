@@ -7,8 +7,9 @@
 
 const char *ssid = "ESP32";
 const char *password = "Teste03";
-//DEFINICOES    
-int pino = 12; 
+//DEFINICOES 
+const int pino = 12;
+const int sensor = 4;
 WiFiServer server(80);
 //CODIGO PRINCIPAL
 void setup() {
@@ -16,7 +17,8 @@ void setup() {
   Serial.println();
   Serial.println("configurando...");    
   delay(6000); 
-  pinMode(12, INPUT_PULLUP); //DEFINE O PINO COMO SAÍDA    
+  pinMode(12, OUTPUT); //DEFINE O PINO COMO SAÍDA 
+  pinMode(4, INPUT);
   WiFi.softAP(ssid, password); // DEFINE que para ter acesso precisa senha
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("O Endereço IP Da Rede : ");
@@ -45,13 +47,19 @@ void loop() {
     client.print("<head><title> Servidor ESP32 </title></head>");
     client.print("<body>");
     client.print("<style type=\"text/css\">h1{color: black;font-family: 'Times New Roman', Times, serif; }.ligado{background-color: green;color: aliceblue;}</style>");
-    client.println("<h1>Recebendo dados da porta analogica</h1>");
-    client.println("<p class="">Valor da porta analógica:</p>");
-    if (digitalWrite(12, HIGH)){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
-      client.println("<p class=\"ligado\">A LED esta ligada</p>");
+    client.print("<h1>RECEPCAO DE DADOS</h1>");
+    client.print("<p>Informacoes da LED: </p>");
+    if (pino == HIGH){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
+      client.println("<li>A LED esta ligada</li>");
       }else{ 
-        client.println("<p class=\"desligado\">A LED esta desligada!</p>");
+        client.println("<li>A LED esta desligada!</li>");
       }
+      client.print("<p>Informacoes do sensor de agua:</p>");
+     if (sensor >  690){
+      client.println("<li>A leitura do sensor e maior que 690 bits</li>");
+      }else{
+        client.print("<li>A leitura do sensor e menor que 690 bits ou sensor desligado!</li>");
+        }
     client.println("</html>");
     client.println("</body>");
     client.stop();
