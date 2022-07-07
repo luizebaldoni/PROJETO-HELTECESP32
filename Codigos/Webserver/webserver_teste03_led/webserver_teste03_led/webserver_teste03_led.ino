@@ -3,13 +3,27 @@
 #include <WiFiAP.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
-#include "heltec.h"
+#include <heltec.h>
 
 const char *ssid = "ESP32";
 const char *password = "Teste03";
 //DEFINICOES 
-const int pino = 12;
-const int sensor = 4;
+int pino = 12;
+int sensor = 4;
+boolean agua{  
+  if(analogRead(sensor > 690)){
+    agua == true;
+    }else{
+      agua == false;
+      }
+  }
+boolean led{
+  if(digitalWrite(pino, HIGH)){
+    led == true;
+    }else{
+      led == false;
+      }
+  }
 WiFiServer server(80);
 //CODIGO PRINCIPAL
 void setup() {
@@ -17,7 +31,7 @@ void setup() {
   Serial.println();
   Serial.println("configurando...");    
   delay(6000); 
-  pinMode(12, OUTPUT); //DEFINE O PINO COMO SAÍDA 
+  pinMode(12, INPUT); //DEFINE O PINO COMO SAÍDA 
   pinMode(4, INPUT);
   WiFi.softAP(ssid, password); // DEFINE que para ter acesso precisa senha
   IPAddress myIP = WiFi.softAPIP();
@@ -32,12 +46,12 @@ void setup() {
 void loop() {
   WiFiClient client = server.available(); 
   if (client) { 
-  Serial.println("Novo Cliente.");
-  String currentLine = ""; 
+    Serial.println("Novo Cliente.");
+    String currentLine = ""; 
   while (client.connected()) { 
-  if (client.available()) { 
-  char c = client.read(); 
-  Serial.write(c); 
+   if (client.available()) { 
+    char c = client.read(); 
+      Serial.write(c); 
   if (c == '\n') { 
   if (currentLine.length() == 0) {
     client.println("HTTP/1.1 200 OK");
@@ -49,13 +63,13 @@ void loop() {
     client.print("<style type=\"text/css\">h1{color: black;font-family: 'Times New Roman', Times, serif; }.ligado{background-color: green;color: aliceblue;}</style>");
     client.print("<h1>RECEPCAO DE DADOS</h1>");
     client.print("<p>Informacoes da LED: </p>");
-    if (pino == HIGH){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
-      client.println("<li>A LED esta ligada</li>");
+    if (led == true){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
+    client.println("<li>A LED esta ligada</li>");
       }else{ 
         client.println("<li>A LED esta desligada!</li>");
       }
       client.print("<p>Informacoes do sensor de agua:</p>");
-     if (sensor >  690){
+     if (agua == true){
       client.println("<li>A leitura do sensor e maior que 690 bits</li>");
       }else{
         client.print("<li>A leitura do sensor e menor que 690 bits ou sensor desligado!</li>");
