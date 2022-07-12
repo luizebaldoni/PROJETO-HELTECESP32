@@ -10,24 +10,8 @@ const char *password = "Teste03";
 //DEFINICOES 
 const int pino = 12;
 const int sensor = 4;
-boolean agua(){  
-  int valor_sensor;
-  valor_sensor = analogRead(sensor);
-  if (valor_sensor > 690){
-    return true;
-    } else{
-      return false;
-      }
-}
-boolean led(){
-  int valor_led;
-  valor_led = digitalRead(pino);
-  if (valor_led, HIGH){
-    return true;
-    }else{
-      return false;
-      }
-  }
+  int valor_sensor = analogRead(sensor);
+  int valor_led = digitalRead(pino);
 WiFiServer server(80);
 //CODIGO PRINCIPAL
 void setup() {
@@ -67,13 +51,13 @@ void loop() {
     client.print("<style type=\"text/css\">h1{color: black;font-family: 'Times New Roman', Times, serif; }.ligado{background-color: green;color: aliceblue;}</style>");
     client.print("<h1>RECEPCAO DE DADOS</h1>");
     client.print("<p>Informacoes da LED: </p>");
-    if (led){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
+    if (valor_led == true){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
     client.println("<li>A LED esta ligada</li>");
       }else{ 
         client.println("<li>A LED esta desligada!</li>");
       }
       client.print("<p>Informacoes do sensor de agua:</p>");
-     if (agua){
+     if (valor_sensor == true){
       client.println("<li>A leitura do sensor e maior que 690 bits</li>");
       }else{
         client.print("<li>A leitura do sensor e menor que 690 bits ou sensor desligado!</li>");
