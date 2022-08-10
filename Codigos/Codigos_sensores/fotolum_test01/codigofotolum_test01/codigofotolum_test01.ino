@@ -1,7 +1,8 @@
-#include "heltec.h"
+#include "arduino.h"
 
-int pinoLed = 12; //PINO DIGITAL UTILIZADO PELO LED 
-int pinoLDR = 4; //PINO ANALÓGICO UTILIZADO PELO LDR
+int pinoLed = 5; //PINO DIGITAL UTILIZADO PELO LED 
+int pinoLDR = 17; //PINO ANALÓGICO UTILIZADO PELO LDR
+int receber; 
 
 void setup(){  
   Serial.begin(115200);
@@ -12,8 +13,11 @@ void setup(){
   pinMode(pinoLDR, INPUT); //DEFINE O PINO COMO ENTRADA
 }    
 void loop(){
+  receber = analogRead(pinoLDR);
+  Serial.println(receber);
+  //digitalWrite(pinoLed, HIGH);
   //O VALOR 600 PODE SER AJUSTADO
-  if(analogRead(pinoLDR) >= 400){ //SE O VALOR LIDO FOR MAIOR QUE 600, FAZ
+  if(receber >= 600){ //SE O VALOR LIDO FOR MAIOR QUE 600, FAZ
     digitalWrite(pinoLed, HIGH); //ACENDE O LED
     printf("led acesa \n");
   }  
