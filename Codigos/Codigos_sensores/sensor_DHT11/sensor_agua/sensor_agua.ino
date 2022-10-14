@@ -1,6 +1,6 @@
 #include "DHT.h"
- 
-#define DHTPIN 4 // pino que estamos conectado
+#include "arduino.h"
+#define DHTPIN D1 // pino que estamos conectado
 #define DHTTYPE DHT11 // DHT 11
  
 // Conecte pino 1 do sensor (esquerda) ao +5V

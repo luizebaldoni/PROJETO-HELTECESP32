@@ -7,7 +7,7 @@
 const char *ssid = "ESP32";
 const char *password = "Teste03";
 //DEFINICOES
-int pinosensor = 4;      
+int pinosensor = 2;      
 int pinoLED = 12;
 boolean sensor(){
     if(analogRead(pinosensor) > 690){ //SE A LEITURA DO PINO FOR MAIOR QUE 690 BITS (PODE SER AJUSTADO), EXECUTA:
