@@ -1,35 +1,49 @@
-#include "DHT.h"
- 
-#define DHTPIN A1 // pino que estamos conectado
-#define DHTTYPE DHT11 // DHT 11
- 
-// Conecte pino 1 do sensor (esquerda) ao +5V
-// Conecte pino 2 do sensor ao pino de dados definido em seu Arduino
-// Conecte pino 4 do sensor ao GND
-// Conecte o resistor de 10K entre pin 2 (dados) 
-// e ao pino 1 (VCC) do sensor
-DHT dht(DHTPIN, DHTTYPE);
- 
-void setup() 
-{
+const int sensor1 = A0;
+const int sensor2 = A1;
+
+float valorSens1;
+float valorSens1_old = 0;
+float valorSens2;
+float valorSens2_old = 0;
+float randNumber;
+
+void setup() {
+  pinMode(sensor1, INPUT);
+  pinMode(sensor2, INPUT);
   Serial.begin(9600);
-  Serial.println("DHTxx test!");
-  dht.begin();
-  // A leitura da temperatura e umidade pode levar 250ms!
-  // O atraso do sensor pode chegar a 2 segundos.
-  float h = dht.readHumidity();
-  float t = dht.readTemperature();
-  // testa se retorno é valido, caso contrário algo está errado.
-  if (isnan(t) || isnan(h)) 
-  {
-    Serial.println("Failed to read from DHT");
+}
+
+void loop() {
+  ReadSensors();
+}
+
+void ReadSensors() {
+  valorSens1 = analogRead(sensor1);
+  valorSens2 = analogRead(sensor2);
+  if (checkVariation())  {
+    valorSens1_old = valorSens1;
+    valorSens2_old = valorSens2;
+    Serial.println("("+String(ValorSens1_Temp())+","+String(ValorSens2_Umid())+")");
     delay(2000);
-  } 
-  else
-  {
-    Serial.print("temperatura: ");
-    Serial.print(t);
-    Serial.print("ºC");
-    delay(100000);
   }
+}
+
+bool checkVariation() {
+  if ((valorSens1) > (valorSens1_old + 5) || (valorSens1) < (valorSens1_old - 5) ||
+      (valorSens2) > (valorSens2_old + 5) || (valorSens2) < (valorSens2_old - 5 )) {
+    return (true);
+  }
+  else {
+    return (false);
+  }
+}
+
+float ValorSens1_Temp() {
+  randNumber=random(1,4);
+  return ((map(valorSens1, 0, 1023, 10, 40))/randNumber);
+}
+
+float ValorSens2_Umid() {
+  randNumber=random(1,9);
+  return ((map(valorSens2, 0, 1023, 1, 100))/randNumber); 
 }
