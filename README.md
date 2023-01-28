@@ -25,9 +25,10 @@ O ESP32 LoRa WiFi v2 da Heltec, tendo como um principal diferencial a comunicaç
 > Tutorial Completo 
 https://www.fernandok.com/2019/03/instalacao-do-esp32-lora-na-arduino-ide.html
 
-### CONFIGURAÇÃO NO VSCODE
-> Opção 1: 
-https://www.filipeflop.com/blog/como-programar-esp32-com-vs-code-e-platformio/
-> Opção 2:
-https://youtu.be/VfLTZcKCGfk
-
+# O QUE FOI FEITO
+- [Codigo integrando os 3 sensores utilizados para a ESP32](Codigos/Codigos_sensores/3_sensores_esp/3_sensores_esp.ino)
+- [Servidor Web dentro do codigo C++](/Codigos/Webserver)
+- [Servidor Python](/servidor)
+- [Banco de Dados](/servidor/banco.py)
+- [Codigo Principal Arduino que o banco capta os dados](/Codigos/Codigos_sensores/3%20SENSORS/3%20SENSORS.ino)
+- [Modelagem 3d](/modelagem_3d/Case/)
